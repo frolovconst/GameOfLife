@@ -21,7 +21,7 @@ class DrawPanel extends JPanel {
         this.H_CELLS_COUNT = hCellsCount;
         this.V_SIZE = CELL_SIZE * V_CELLS_COUNT;
         this.H_SIZE = CELL_SIZE * H_CELLS_COUNT;
-        this.INIT_CELL_VAL= (char)3;
+        this.INIT_CELL_VAL= (char)10;
         this.INIT_CELL_X = H_CELLS_COUNT/2;
         this.INIT_CELL_Y = V_CELLS_COUNT/2;
         this.crnt_row = INIT_CELL_Y;
@@ -88,7 +88,36 @@ class DrawPanel extends JPanel {
                     break;
                 default:
                     break;
+
+//                case 0:
+//                    cellAtm[crnt_row][j] = 6;
+//                    break;
+//                case 1:
+//                    cellAtm[crnt_row][j] = 6;
+//                    break;
+//                case 2:
+//                    cellAtm[crnt_row][j] = 3;
+//                    break;
+//                case 3:
+//                    cellAtm[crnt_row][j] = 6;
+//                    break;
+//                case 4:
+//                    cellAtm[crnt_row][j] = 3;
+//                    break;
+//                case 5:
+//                    cellAtm[crnt_row][j] = 6;
+//                    break;
+//                case 6:
+//                    cellAtm[crnt_row][j] = 6;
+//                    break;
+//                case 7:
+//                    cellAtm[crnt_row][j] = 3;
+//                    break;
+//                default:
+//                    break;
             }
+            if(cellAtm[crnt_row][j] < 7) cellAtm[crnt_row][j] = 13;
+            if(cellAtm[crnt_row][j] > 13) cellAtm[crnt_row][j] = 7;
         }
     }
 
@@ -97,9 +126,13 @@ class DrawPanel extends JPanel {
         int leftIndex = (x>0)? (x-1): H_CELLS_COUNT-1;
         int rightIndex = (x<H_CELLS_COUNT-1)? (x+1): 0;
         int yIndex = (y==0) ? V_CELLS_COUNT-1 : y-1;
-        if(cellAtm[yIndex][rightIndex] > cellAtm[y][x]) result += 1;
-        if(cellAtm[yIndex][x] > cellAtm[y][x]) result += 2;
-        if(cellAtm[yIndex][leftIndex] > cellAtm[y][x]) result += 4;
+//        if(cellAtm[yIndex][rightIndex] > cellAtm[y][x]) result += 1;
+//        if(cellAtm[yIndex][x] > cellAtm[y][x]) result += 2;
+//        if(cellAtm[yIndex][leftIndex] > cellAtm[y][x]) result += 4;
+        if(cellAtm[yIndex][rightIndex] > 10) result += 1;
+        if(cellAtm[yIndex][x] > 10) result += 2;
+        if(cellAtm[yIndex][leftIndex] > 10) result += 4;
+
         return result;
     }
 
@@ -125,19 +158,19 @@ class DrawPanel extends JPanel {
 
     private Color ConvertValueToColor(char value){
         switch (value){
-            case 0:
+            case 7:
                 return new Color(0x0202EC);
-            case 1:
+            case 8:
                 return new Color(0xA34BEC);
-            case 2:
+            case 9:
                 return new Color(0x0FE9EC);
-            case 3:
+            case 10:
                 return new Color(0xE0E3EC);
-            case 4:
+            case 11:
                 return new Color(0xECE70D);
-            case 5:
+            case 12:
                 return new Color(0x1EEC26);
-            case 6:
+            case 13:
                 return new Color(0xEC1C12);
             default:
                 return new Color(1);

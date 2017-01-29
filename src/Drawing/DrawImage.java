@@ -14,9 +14,10 @@ public class DrawImage {
     static DrawPanel graphicsWin;
     static final int CELL_SIZE=7;
     static final int V_CELLS_COUNT=90;
-    static final int H_CELLS_COUNT=80;
+    static final int H_CELLS_COUNT=160;
     static boolean terminateSignal=false;
     static AutoIncrement drawingThread;
+    static int sleepTime=50;
 
     public static void main(String[] args) {
         window = new JFrame();
@@ -47,7 +48,7 @@ public class DrawImage {
                 graphicsWin.Increment();
                 window.setContentPane(graphicsWin);
                 try {
-                    this.sleep(50);
+                    this.sleep(sleepTime);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -72,6 +73,8 @@ public class DrawImage {
 //                graphicsWin.increment();
 //                window.setContentPane(graphicsWin);
             }
+            if(key_code == KeyEvent.VK_UP) sleepTime *=.95;
+            if(key_code == KeyEvent.VK_DOWN) sleepTime = (sleepTime < 20) ? (sleepTime+1) : (int)(sleepTime*1.05);
         }
     }
 
